@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <button id="button">Закрыть приложение</button>
+    <p>Welcome to your Electron application.</p>
+    <script>
+      
+      // IPC Renderer
+
+      var ipc = require('electron').ipcRenderer; // import IPC Renderer
+        var closeButton = document.getElementById('button');
+        closeButton.addEventListener('click', function(){
+            ipc.once('actionReply', function(event, response){
+              console.log(response, 'response');
+            })
+            ipc.send('invokeAction');
+        });
+
+       // 
+    </script>
+  </body>
+</html>
